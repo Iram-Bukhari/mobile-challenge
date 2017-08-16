@@ -69,7 +69,7 @@ public class PhotosActivity extends AppCompatActivity {
         final String TAG = "PhotosActivity";
         fetchedPhotos = new ArrayList<Photo>();
         fetchedPhotos.clear();
-        String url = APIManager.API_BASE_URL + APIManager.GET_PHOTOS + APIManager.FEATURE + "fresh_today&" + APIManager.IMAGE_SIZE + "5,4,3,2&" + APIManager.PAGE + CURRPAGE + APIManager.CONSUMERKEY+"&only=nude,Celebrities,Food";
+        String url = APIManager.API_BASE_URL + APIManager.GET_PHOTOS + APIManager.FEATURE + "fresh_today&" + APIManager.IMAGE_SIZE + "5,4,3,2&" + APIManager.PAGE + CURRPAGE + APIManager.CONSUMERKEY;
 
         if (mRequestQueue == null) {
             mRequestQueue = Volley.newRequestQueue(getApplicationContext());
