@@ -33,6 +33,7 @@ public class FullScreenActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setUpActionBar();
         setContentView(R.layout.activity_full_screen);
         viewPager = (ViewPager) findViewById(R.id.pager);
         mainlayout = (RelativeLayout) findViewById(R.id.mainlayout);
@@ -59,6 +60,18 @@ public class FullScreenActivity extends AppCompatActivity {
         // displaying selected image first
         viewPager.setCurrentItem(position);
 
+
+    }
+
+    /**
+     * Set action bar attribues
+     */
+    void setUpActionBar() {
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setLogo(R.drawable.rsz_1logo);
+        getSupportActionBar().setTitle("  View Photo");
+
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
 
     }
 

@@ -41,6 +41,7 @@ public class PhotosActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setUpActionBar();
         setContentView(R.layout.activity_photos);
 
         gridView = (GridView) findViewById(R.id.gridView);
@@ -49,6 +50,16 @@ public class PhotosActivity extends AppCompatActivity {
 
         CURRPAGE = 1;
         gridView.setOnScrollListener(new EndlessScrollListener());
+    }
+    /**
+     * Set action bar attribues
+     */
+    void setUpActionBar() {
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setLogo(R.drawable.rsz_1logo);
+        getSupportActionBar().setTitle("  Photos");
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
+
     }
 
     /**
