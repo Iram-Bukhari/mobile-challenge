@@ -22,6 +22,7 @@ package iram.com.demo_500px.adapters;
         import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
         import iram.com.demo_500px.R;
+        import iram.com.demo_500px.extras.Keys;
         import iram.com.demo_500px.pojo.Photo;
 
 public class FullScreenImageAdapter extends PagerAdapter {
@@ -50,7 +51,7 @@ public class FullScreenImageAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
         ImageView imgDisplay;
-        TextView txtName,txtDesc;
+        TextView txtName,txtDesc,txtOverlay;
 
 
         inflater = (LayoutInflater) _activity
@@ -61,13 +62,8 @@ public class FullScreenImageAdapter extends PagerAdapter {
         imgDisplay = (ImageView) viewLayout.findViewById(R.id.imgDisplay);
         txtName = (TextView) viewLayout.findViewById(R.id.txtName);
         txtDesc = (TextView) viewLayout.findViewById(R.id.txtDescription);
+        txtOverlay = (TextView) viewLayout.findViewById(R.id.image_overlay);
 
-        //Loading image from URL through Glide
-        Glide.with(_activity)
-                .load(_imagePaths.get(position).getImgurl())
-                .crossFade()
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .into(imgDisplay);
         String name = _imagePaths.get(position).getName();
         //Checking for untitled/empty values in name/description
         if(!name.equalsIgnoreCase("untitled")&&!name.equalsIgnoreCase("null")&&!name.equalsIgnoreCase("")&&name!=null){
@@ -82,6 +78,21 @@ public class FullScreenImageAdapter extends PagerAdapter {
         }
         else{
             txtDesc.setVisibility(View.GONE);
+        }
+        // Adding an overlay for hiding adult content
+        if(_imagePaths.get(position).getCategory()== Keys.NUDE_CATEGORY){
+            txtOverlay.setVisibility(View.VISIBLE);
+            imgDisplay.setVisibility(View.GONE);
+        }
+        else{
+            txtOverlay.setVisibility(View.GONE);
+            imgDisplay.setVisibility(View.VISIBLE);
+            //Loading image from URL through Glide
+            Glide.with(_activity)
+                    .load(_imagePaths.get(position).getImgurl())
+                    .crossFade()
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(imgDisplay);
         }
 
         ((ViewPager) container).addView(viewLayout);
