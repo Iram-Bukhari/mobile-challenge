@@ -58,7 +58,7 @@ public class PhotosActivity extends AppCompatActivity {
         final String TAG = "PhotosActivity";
         fetchedPhotos = new ArrayList<Photo>();
         fetchedPhotos.clear();
-        String url = APIManager.API_BASE_URL + APIManager.GET_PHOTOS + APIManager.FEATURE + "fresh_today&" + APIManager.IMAGE_SIZE + "5,4,3,2&" + APIManager.PAGE + CURRPAGE + APIManager.CONSUMERKEY;
+        String url = APIManager.API_BASE_URL + APIManager.GET_PHOTOS + APIManager.FEATURE + "fresh_today&" + APIManager.IMAGE_SIZE + "5,4,3,2&" + APIManager.PAGE + CURRPAGE + APIManager.CONSUMERKEY+"&only=nude,Celebrities,Food";
 
         if (mRequestQueue == null) {
             mRequestQueue = Volley.newRequestQueue(getApplicationContext());
@@ -103,7 +103,7 @@ public class PhotosActivity extends AppCompatActivity {
                 Photo ph = new Photo();
                 ph.setId(photosArray.getJSONObject(i).getInt(Keys.ID));
                 ph.setName(photosArray.getJSONObject(i).getString(Keys.NAME));
-                ph.setId(photosArray.getJSONObject(i).getInt(Keys.CATEGORY));
+                ph.setCategory(photosArray.getJSONObject(i).getInt(Keys.CATEGORY));
                 ph.setDescription(photosArray.getJSONObject(i).getString(Keys.DESCRIPTION));
                 ph.setThumburl(photosArray.getJSONObject(i).getJSONArray("images").getJSONObject(1).getString(Keys.URL));
                 ph.setImgurl(photosArray.getJSONObject(i).getJSONArray("images").getJSONObject(2).getString(Keys.URL));

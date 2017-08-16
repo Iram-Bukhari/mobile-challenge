@@ -7,5 +7,7 @@ public interface Keys {
     String DESCRIPTION = "description";
     String URL = "url";
     String CATEGORY = "category";
+    int NUDE_CATEGORY = 4;
+
 
 }
