@@ -4,6 +4,8 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
+
+import static iram.com.demo_500px.extras.Keys.CATEGORY;
 import static iram.com.demo_500px.extras.Keys.DESCRIPTION;
 import static iram.com.demo_500px.extras.Keys.ID;
 import static iram.com.demo_500px.extras.Keys.NAME;
@@ -20,6 +22,8 @@ public class Photo implements Parcelable {
     String thumburl;
     @SerializedName(URL)
     String imgurl;
+    @SerializedName(CATEGORY)
+    int category;
 
     public Photo() {
     }
@@ -30,6 +34,7 @@ public class Photo implements Parcelable {
         description = in.readString();
         thumburl = in.readString();
         imgurl = in.readString();
+        category = in.readInt();
     }
 
     public static final Creator<Photo> CREATOR = new Creator<Photo>() {
@@ -84,6 +89,14 @@ public class Photo implements Parcelable {
         this.imgurl = imgurl;
     }
 
+    public int getCategory() {
+        return category;
+    }
+
+    public void setCategory(int category) {
+        this.category = category;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -96,6 +109,7 @@ public class Photo implements Parcelable {
         dest.writeString(description);
         dest.writeString(thumburl);
         dest.writeString(imgurl);
+        dest.writeInt(category);
     }
 
     @Override
@@ -106,6 +120,7 @@ public class Photo implements Parcelable {
                 ", description='" + description + '\'' +
                 ", thumburl=" + thumburl +
                 ", imgurl=" + imgurl + '\'' +
+                "category=" + category +
                 '}';
     }
 }
