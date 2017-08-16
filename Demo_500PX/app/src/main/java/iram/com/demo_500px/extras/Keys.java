@@ -6,5 +6,6 @@ public interface Keys {
     String NAME = "name";
     String DESCRIPTION = "description";
     String URL = "url";
+    String CATEGORY = "category";
 
 }
