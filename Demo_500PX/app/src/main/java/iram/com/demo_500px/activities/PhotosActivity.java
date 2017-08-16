@@ -20,10 +20,13 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.security.Key;
 import java.util.ArrayList;
 import iram.com.demo_500px.R;
 import iram.com.demo_500px.adapters.GridViewAdapter;
 import iram.com.demo_500px.extras.APIManager;
+import iram.com.demo_500px.extras.Keys;
 import iram.com.demo_500px.pojo.Photo;
 
 public class PhotosActivity extends AppCompatActivity {
@@ -98,11 +101,12 @@ public class PhotosActivity extends AppCompatActivity {
 
             for (int i = 0; i < photosArray.length(); i++) {
                 Photo ph = new Photo();
-                ph.setId(photosArray.getJSONObject(i).getInt("id"));
-                ph.setName(photosArray.getJSONObject(i).getString("name"));
-                ph.setDescription(photosArray.getJSONObject(i).getString("description"));
-                ph.setThumburl(photosArray.getJSONObject(i).getJSONArray("images").getJSONObject(1).getString("url"));
-                ph.setImgurl(photosArray.getJSONObject(i).getJSONArray("images").getJSONObject(2).getString("url"));
+                ph.setId(photosArray.getJSONObject(i).getInt(Keys.ID));
+                ph.setName(photosArray.getJSONObject(i).getString(Keys.NAME));
+                ph.setId(photosArray.getJSONObject(i).getInt(Keys.CATEGORY));
+                ph.setDescription(photosArray.getJSONObject(i).getString(Keys.DESCRIPTION));
+                ph.setThumburl(photosArray.getJSONObject(i).getJSONArray("images").getJSONObject(1).getString(Keys.URL));
+                ph.setImgurl(photosArray.getJSONObject(i).getJSONArray("images").getJSONObject(2).getString(Keys.URL));
                 fetchedPhotos.add(ph);
             }
             mainPhotos.addAll(fetchedPhotos);
